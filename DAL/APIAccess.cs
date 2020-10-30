@@ -24,7 +24,6 @@ namespace DAL
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
                 var result = client.GetAsync(URL);
-                //var result = client.GetAsync(URL);
                 result.Wait();
 
                 return result.Result;
@@ -33,7 +32,6 @@ namespace DAL
 
         private string GetURI()
         {
-            //return "https://hubeau.eaufrance.fr/api/v0/etat_piscicole/code_espece_poisson";
             return "api/CodeEspecePoisson";
         }
 
@@ -42,9 +40,9 @@ namespace DAL
             HttpResponseMessage reponse = GET(GetURI());
             string content = reponse.Content.ReadAsStringAsync().Result;
 
-            //Récupérer que la partie "data" qu'on s'intéresse
-            //var parsedObject = JObject.Parse(content);
-            //var dataJson = parsedObject["data"].ToString();
+            /*Récupérer que la partie "data" qu'on s'intéresse
+            var parsedObject = JObject.Parse(content);
+            var dataJson = parsedObject["data"].ToString();*/
 
             List<CodeEspecePoissonDTO> listData = new List<CodeEspecePoissonDTO>();
             if (reponse.StatusCode == System.Net.HttpStatusCode.OK || reponse.StatusCode == System.Net.HttpStatusCode.PartialContent)
@@ -77,6 +75,12 @@ namespace DAL
                 poisson = null;
             }
             return poisson;
+        }
+
+        public CodeEspecePoissonDTO PutCodeEspecePoissonDTO(int codeTaxon, CodeEspecePoissonDTO poisson)
+        {
+            CodeEspecePoissonDTO cc = new CodeEspecePoissonDTO();
+            return cc;
         }
     }
 }

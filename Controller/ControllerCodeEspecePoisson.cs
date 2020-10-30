@@ -25,5 +25,10 @@ namespace Controller
             var listPoisson = api.GetCodeEspecePoissonDTO(codeTaxon);
             return (new ViewModelCodeEspecePoisson(listPoisson.Code, listPoisson.Nom_Commun, listPoisson.Nom_Latin, listPoisson.Code_Taxon, listPoisson.Uri_Taxon, listPoisson.Statut));
         }
+
+        //public CodeEspecePoissonDTO PutCodeEspecePoisson()
+        //{
+            
+        //}
     }
 }

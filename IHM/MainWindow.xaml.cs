@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,18 +24,28 @@ namespace IHM
         public MainWindow()
         {
             InitializeComponent();
+            ControllerCodeEspecePoisson listpoissons = new ControllerCodeEspecePoisson();
+            dgPoissons.ItemsSource = listpoissons.GetListCodeEspecePoisson();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Get1(object sender, RoutedEventArgs e)
         {
-            ListCodeEspecePoissonWindow newwin = new ListCodeEspecePoissonWindow();
+            ViewModelCodeEspecePoisson viewModel = dgPoissons.SelectedItem as ViewModelCodeEspecePoisson;
+            WindowGet1 newwin = new WindowGet1(viewModel);
             newwin.Show();
         }
 
-        private void Button_Click_One(object sender, RoutedEventArgs e)
+
+        private void Button_Click_Post(object sender, RoutedEventArgs e)
         {
-            CodeEspecePoissonWindow newwin = new CodeEspecePoissonWindow();
-            newwin.Show();
+            //CodeEspecePoissonWindow newwin = new CodeEspecePoissonWindow();
+            //newwin.Show();
+        }
+
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            //CodeEspecePoissonWindow newwin = new CodeEspecePoissonWindow();
+            //newwin.Show();
         }
     }
 }
