@@ -14,7 +14,7 @@ namespace Controller
             
             foreach (var item in listPoisson)
             {
-                ls.Add(new ViewModelCodeEspecePoisson(item.Code, item.Nom_Commun, item.Nom_Latin, item.Code_Taxon, item.Uri_Taxon, item.Statut));
+                ls.Add(new ViewModelCodeEspecePoisson(item.Code_Taxon, item.Code, item.Nom_Commun, item.Nom_Latin, item.Uri_Taxon, item.Statut));
             }
             return ls;
         }
@@ -23,12 +23,7 @@ namespace Controller
         {
             APIAccess api = new APIAccess();
             var listPoisson = api.GetCodeEspecePoissonDTO(codeTaxon);
-            return (new ViewModelCodeEspecePoisson(listPoisson.Code, listPoisson.Nom_Commun, listPoisson.Nom_Latin, listPoisson.Code_Taxon, listPoisson.Uri_Taxon, listPoisson.Statut));
+            return (new ViewModelCodeEspecePoisson(listPoisson.Code_Taxon, listPoisson.Code, listPoisson.Nom_Commun, listPoisson.Nom_Latin, listPoisson.Uri_Taxon, listPoisson.Statut));
         }
-
-        //public CodeEspecePoissonDTO PutCodeEspecePoisson()
-        //{
-            
-        //}
     }
 }

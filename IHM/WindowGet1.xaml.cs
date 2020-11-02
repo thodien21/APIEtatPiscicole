@@ -38,7 +38,7 @@ namespace IHM
 
         public ViewModelCodeEspecePoisson GetNewPoisson()
         {
-            ViewModelCodeEspecePoisson newViewModel = new ViewModelCodeEspecePoisson(tblCode.Text, tblNomCommun.Text, tblNomLatin.Text, Convert.ToInt32(tblCodeTaxon.Text), tblUriTaxon.Text, tblStatut.Text);
+            ViewModelCodeEspecePoisson newViewModel = new ViewModelCodeEspecePoisson(Convert.ToInt32(tblCodeTaxon.Text), tblCode.Text, tblNomCommun.Text, tblNomLatin.Text, tblUriTaxon.Text, tblStatut.Text);
             return newViewModel;
         }
     }

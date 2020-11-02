@@ -14,12 +14,12 @@ namespace Controller
         public int Code_Taxon { get; private set; }
         public string Uri_Taxon { get; private set; }
         public string Statut { get; private set; }
-        public ViewModelCodeEspecePoisson(string code, string nomCommun, string nomLatin, int codeTaxon, string uriTaxon, string statut)
+        public ViewModelCodeEspecePoisson(int codeTaxon, string code, string nomCommun, string nomLatin, string uriTaxon, string statut)
         {
+            Code_Taxon = codeTaxon;
             Code = code;
             Nom_Commun = nomCommun;
             Nom_Latin = nomLatin;
-            Code_Taxon = codeTaxon;
             Uri_Taxon = uriTaxon;
             Statut = statut;
         }

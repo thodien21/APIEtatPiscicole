@@ -10,12 +10,8 @@ namespace DAL
 {
     public class APIAccess
     {
-        public APIAccess()
-        {
-
-        }
-
-        private HttpResponseMessage GET(string URL)
+        #region GET
+        private HttpResponseMessage GETO(string URL)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -37,7 +33,7 @@ namespace DAL
 
         public List<CodeEspecePoissonDTO> GetCodeEspecePoissonDTO()
         {
-            HttpResponseMessage reponse = GET(GetURI());
+            HttpResponseMessage reponse = GETO(GetURI());
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             /*Récupérer que la partie "data" qu'on s'intéresse
@@ -58,7 +54,7 @@ namespace DAL
 
         public CodeEspecePoissonDTO GetCodeEspecePoissonDTO(int codeTaxon)
         {
-            HttpResponseMessage reponse = GET(GetURI() + "/" + codeTaxon);
+            HttpResponseMessage reponse = GETO(GetURI() + "/" + codeTaxon);
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             //Récupérer que la partie "data" qu'on s'intéresse
@@ -76,11 +72,8 @@ namespace DAL
             }
             return poisson;
         }
+        #endregion
 
-        public CodeEspecePoissonDTO PutCodeEspecePoissonDTO(int codeTaxon, CodeEspecePoissonDTO poisson)
-        {
-            CodeEspecePoissonDTO cc = new CodeEspecePoissonDTO();
-            return cc;
-        }
+       
     }
 }
