@@ -36,9 +36,9 @@ namespace IHM
         private void Button_Click_Put(object sender, RoutedEventArgs e)
         {
             ViewModelCodeEspecePoisson mybody = GetNewPoisson();
-            var json = JsonConvert.SerializeObject(mybody, Formatting.Indented);
+            int id = mybody.Code_Taxon;
             APIAccess myAPI = new APIAccess();
-            myAPI.Methode("api/CodeEspecePoisson", "put", json);
+            myAPI.Methode("api/CodeEspecePoisson/" + id, "put", mybody);
         }
 
         public ViewModelCodeEspecePoisson GetNewPoisson()
@@ -50,9 +50,8 @@ namespace IHM
         private void Button_Click_Post(object sender, RoutedEventArgs e)
         {
             ViewModelCodeEspecePoisson mybody = GetNewPoisson();
-            var json = JsonConvert.SerializeObject(mybody, Formatting.Indented);
             APIAccess myAPI = new APIAccess();
             myAPI.Methode("api/CodeEspecePoisson", "post", mybody);
-         }
+        }
     }
 }

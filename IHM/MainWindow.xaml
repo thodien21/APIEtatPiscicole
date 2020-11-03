@@ -34,5 +34,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="504,357,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Refresh"/>
     </Grid>
 </Window>

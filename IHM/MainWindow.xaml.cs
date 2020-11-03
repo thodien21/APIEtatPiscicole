@@ -1,7 +1,10 @@
 ﻿using Controller;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,8 +27,7 @@ namespace IHM
         public MainWindow()
         {
             InitializeComponent();
-            ControllerCodeEspecePoisson listpoissons = new ControllerCodeEspecePoisson();
-            dgPoissons.ItemsSource = listpoissons.GetListCodeEspecePoisson();
+            GetAllFish();
         }
 
         private void Button_Click_Get1(object sender, RoutedEventArgs e)
@@ -35,17 +37,31 @@ namespace IHM
             newwin.Show();
         }
 
-
-        private void Button_Click_Post(object sender, RoutedEventArgs e)
-        {
-            //CodeEspecePoissonWindow newwin = new CodeEspecePoissonWindow();
-            //newwin.Show();
-        }
-
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            //CodeEspecePoissonWindow newwin = new CodeEspecePoissonWindow();
-            //newwin.Show();
+            ViewModelCodeEspecePoisson viewModel = dgPoissons.SelectedItem as ViewModelCodeEspecePoisson;
+            int id = viewModel.Code_Taxon;
+            APIAccess apiAccess = new APIAccess();
+            HttpResponseMessage mess = apiAccess.Methode("api/CodeEspecePoisson/" + id, "delete", null);
+            if(mess.StatusCode == HttpStatusCode.OK )
+            {
+                MessageBox.Show("Poisson supprimée");
+            }
+            else
+            {
+                MessageBox.Show("Suppression rencontre une erreur : ", mess.ReasonPhrase);
+            }
+        }
+
+        private void Button_Click_Refresh(object sender, RoutedEventArgs e)
+        {
+            GetAllFish();
+        }
+
+        private void GetAllFish()
+        {
+            ControllerCodeEspecePoisson listpoissons = new ControllerCodeEspecePoisson();
+            dgPoissons.ItemsSource = listpoissons.GetListCodeEspecePoisson();
         }
     }
 }
