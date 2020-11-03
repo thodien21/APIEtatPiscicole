@@ -5,13 +5,14 @@ using Newtonsoft.Json.Linq;
 using Model;
 using System;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace DAL
 {
     public class APIAccess
     {
         #region GET
-        private HttpResponseMessage GETO(string URL)
+        private HttpResponseMessage GET(string URL)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -19,21 +20,60 @@ namespace DAL
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
-                var result = client.GetAsync(URL);
+                Task<HttpResponseMessage> result = client.GetAsync(URL);
                 result.Wait();
 
                 return result.Result;
             }
         }
 
-        private string GetURI()
+        public HttpResponseMessage Methode(string URL, string methode, Object body)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:64226/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                Task<HttpResponseMessage> result;
+                switch(methode.ToUpper())
+                {
+                    case "GET":
+                        result = client.GetAsync(URL);
+                        result.Wait();
+                        return result.Result;
+                    case "PUT":
+                        //string json = JsonConvert.SerializeObject(body, Formatting.Indented);
+                        //StringContent stringContent = new StringContent(json);
+                        //result = client.PutAsync(URL, stringContent);
+                        result = client.GetAsync(URL);
+                        result.Wait();
+                        return result.Result;
+                    case "POST":
+                        //string json = JsonConvert.SerializeObject(body, Formatting.Indented);
+                        //StringContent stringContent = new StringContent(json);
+                        //result = client.PostAsync(URL, stringContent);
+                        result = client.PostAsJsonAsync(URL, body);
+                        result.Wait();
+                        return result.Result;
+                    default:
+                        result = null;
+                        result.Wait();
+                        return result.Result;
+                }
+            }
+        }
+
+        private string GetUri()
         {
             return "api/CodeEspecePoisson";
         }
 
         public List<CodeEspecePoissonDTO> GetCodeEspecePoissonDTO()
         {
-            HttpResponseMessage reponse = GETO(GetURI());
+            //HttpResponseMessage reponse = GET(GetUri());
+            var reponse = Methode(GetUri(), "get", null);
+            HttpContent contentHttp = reponse.Content;
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             /*Récupérer que la partie "data" qu'on s'intéresse
@@ -54,7 +94,7 @@ namespace DAL
 
         public CodeEspecePoissonDTO GetCodeEspecePoissonDTO(int codeTaxon)
         {
-            HttpResponseMessage reponse = GETO(GetURI() + "/" + codeTaxon);
+            HttpResponseMessage reponse = GET(GetUri() + "/" + codeTaxon);
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             //Récupérer que la partie "data" qu'on s'intéresse
@@ -73,7 +113,5 @@ namespace DAL
             return poisson;
         }
         #endregion
-
-       
     }
 }

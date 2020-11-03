@@ -1,4 +1,6 @@
 ﻿using Controller;
+using DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +35,10 @@ namespace IHM
 
         private void Button_Click_Put(object sender, RoutedEventArgs e)
         {
-            GetNewPoisson();
+            ViewModelCodeEspecePoisson mybody = GetNewPoisson();
+            var json = JsonConvert.SerializeObject(mybody, Formatting.Indented);
+            APIAccess myAPI = new APIAccess();
+            myAPI.Methode("api/CodeEspecePoisson", "put", json);
         }
 
         public ViewModelCodeEspecePoisson GetNewPoisson()
@@ -41,5 +46,13 @@ namespace IHM
             ViewModelCodeEspecePoisson newViewModel = new ViewModelCodeEspecePoisson(Convert.ToInt32(tblCodeTaxon.Text), tblCode.Text, tblNomCommun.Text, tblNomLatin.Text, tblUriTaxon.Text, tblStatut.Text);
             return newViewModel;
         }
+
+        private void Button_Click_Post(object sender, RoutedEventArgs e)
+        {
+            ViewModelCodeEspecePoisson mybody = GetNewPoisson();
+            var json = JsonConvert.SerializeObject(mybody, Formatting.Indented);
+            APIAccess myAPI = new APIAccess();
+            myAPI.Methode("api/CodeEspecePoisson", "post", mybody);
+         }
     }
 }

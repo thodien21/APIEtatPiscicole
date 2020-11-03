@@ -8,7 +8,7 @@
         Title="WindowGet1" Height="450" Width="800">
     <Grid>
         <Label Content="Code Taxon" HorizontalAlignment="Left" Margin="163,71,0,0" VerticalAlignment="Top" Height="32"/>
-        <TextBlock Name="tblCodeTaxon" Margin="271,73,204,316"/>
+        <TextBox Name="tblCodeTaxon" Margin="271,73,204,316"/>
         <Label Content="Nom Commun" HorizontalAlignment="Left" Margin="163,107,0,0" VerticalAlignment="Top" Height="32"/>
         <TextBox Name="tblNomCommun" Margin="271,109,204,280"/>
         <Label Content="Nom Latin" HorizontalAlignment="Left" Margin="163,142,0,0" VerticalAlignment="Top" Height="32"/>
@@ -19,6 +19,7 @@
         <TextBox Name="tblUriTaxon" Margin="271,214,204,176"/>
         <Label Content="Statut" HorizontalAlignment="Left" Margin="163,247,0,0" VerticalAlignment="Top" Height="32"/>
         <TextBox Name="tblStatut" Margin="271,249,204,140"/>
-        <Button Content="Mettre à jour" HorizontalAlignment="Left" Margin="319,322,0,0" VerticalAlignment="Top" Width="123" Height="33" Click="Button_Click_Put"/>
+        <Button Content="Mettre à jour" HorizontalAlignment="Left" Margin="271,321,0,0" VerticalAlignment="Top" Width="123" Height="33" Click="Button_Click_Put"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="483,321,0,0" VerticalAlignment="Top" Width="105" Height="33" Click="Button_Click_Post"/>
     </Grid>
 </Window>
