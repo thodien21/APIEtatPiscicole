@@ -77,7 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModelCodeEspecePoisson.cs" />
     <Compile Include="WindowGet1.xaml.cs">
       <DependentUpon>WindowGet1.xaml</DependentUpon>
     </Compile>

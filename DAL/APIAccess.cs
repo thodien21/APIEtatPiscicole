@@ -29,12 +29,10 @@ namespace DAL
                     case "PUT":
                         result = client.PutAsJsonAsync(URL, body);
                         result.Wait();
-                        var re2s = result.Result.Content.ToString();
                         return result.Result;
                     case "POST":
                         result = client.PostAsJsonAsync(URL, body);
                         result.Wait();
-                        var res = result.Result.Content.ToString();
                         return result.Result;
                     case "DELETE":
                         result = client.DeleteAsync(URL);
@@ -60,7 +58,7 @@ namespace DAL
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             List<CodeEspecePoissonDTO> listData = new List<CodeEspecePoissonDTO>();
-            if (reponse.StatusCode == System.Net.HttpStatusCode.OK || reponse.StatusCode == System.Net.HttpStatusCode.PartialContent)
+            if (reponse.IsSuccessStatusCode)
             {
                 listData = JsonConvert.DeserializeObject<List<CodeEspecePoissonDTO>>(content);
             }
@@ -77,7 +75,7 @@ namespace DAL
             string content = reponse.Content.ReadAsStringAsync().Result;
 
             CodeEspecePoissonDTO poisson = new CodeEspecePoissonDTO();
-            if (reponse.StatusCode == System.Net.HttpStatusCode.OK || reponse.StatusCode == System.Net.HttpStatusCode.PartialContent)
+            if (reponse.IsSuccessStatusCode)
             {
                 poisson = JsonConvert.DeserializeObject<CodeEspecePoissonDTO>(content);
             }
