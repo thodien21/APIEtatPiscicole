@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModelCodeEspecePoisson.cs" />
     <Compile Include="WindowGet1.xaml.cs">
       <DependentUpon>WindowGet1.xaml</DependentUpon>
     </Compile>
@@ -127,13 +128,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Controller\Controller.csproj">
-      <Project>{c6721a34-2459-4472-ad6b-195a257ca697}</Project>
-      <Name>Controller</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{c7dd9c31-18bd-46ba-9b17-d6887e1161e2}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{0d50d2a9-066a-472b-9ef2-55fcad2340b7}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

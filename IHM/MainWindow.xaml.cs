@@ -1,21 +1,9 @@
-﻿using Controller;
-using DAL;
-using System;
+﻿using DAL;
+using Model;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace IHM
 {
@@ -60,8 +48,27 @@ namespace IHM
 
         private void GetAllFish()
         {
-            ControllerCodeEspecePoisson listpoissons = new ControllerCodeEspecePoisson();
-            dgPoissons.ItemsSource = listpoissons.GetListCodeEspecePoisson();
+            dgPoissons.ItemsSource = GetListCodeEspecePoisson();
+        }
+
+        public List<ViewModelCodeEspecePoisson> GetListCodeEspecePoisson()
+        {
+            APIAccess api = new APIAccess();
+            List<CodeEspecePoissonDTO> listPoisson = api.GetCodeEspecePoissonDTO();
+            List<ViewModelCodeEspecePoisson> ls = new List<ViewModelCodeEspecePoisson>();
+
+            foreach (var item in listPoisson)
+            {
+                ls.Add(new ViewModelCodeEspecePoisson(item.Code_Taxon, item.Code, item.Nom_Commun, item.Nom_Latin, item.Uri_Taxon, item.Statut));
+            }
+            return ls;
+        }
+
+        public ViewModelCodeEspecePoisson GetCodeEspecePoisson(int codeTaxon)
+        {
+            APIAccess api = new APIAccess();
+            var listPoisson = api.GetCodeEspecePoissonDTO(codeTaxon);
+            return (new ViewModelCodeEspecePoisson(listPoisson.Code_Taxon, listPoisson.Code, listPoisson.Nom_Commun, listPoisson.Nom_Latin, listPoisson.Uri_Taxon, listPoisson.Statut));
         }
     }
 }

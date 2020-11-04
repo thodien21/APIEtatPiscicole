@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{C6721A34-2459-4472-AD6B-195A257CA697}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C7DD9C31-18BD-46BA-9B17-D6887E1161E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHM", "IHM\IHM.csproj", "{E4E3F09B-69A6-463E-9950-71B486552CF0}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6721A34-2459-4472-AD6B-195A257CA697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6721A34-2459-4472-AD6B-195A257CA697}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6721A34-2459-4472-AD6B-195A257CA697}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6721A34-2459-4472-AD6B-195A257CA697}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7DD9C31-18BD-46BA-9B17-D6887E1161E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7DD9C31-18BD-46BA-9B17-D6887E1161E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7DD9C31-18BD-46BA-9B17-D6887E1161E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
